@@ -2,10 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 
 
-def read_price(siteUrl):
+def read_price(site_url):
     try:
         headers = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36' }
-        page = requests.get(siteUrl,headers=headers)
+        page = requests.get(site_url,headers=headers)
         soup = BeautifulSoup(page.content, features="lxml")
         title = soup.find(id='productTitle')
         if title:
@@ -22,10 +22,11 @@ def read_price(siteUrl):
     except AttributeError:
         print("NoneType")
 
-def __main__():
+def main():
     web_url = input('Enter the url of the product: ')
     read_price(web_url)
 
-
+if __name__ == "__main__":
+    main()
         
 
