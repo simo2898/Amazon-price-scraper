@@ -22,6 +22,8 @@ def read_price(site_url):
     except AttributeError:
         print("NoneType")
 
+#implemented algo
+
 def main():
     web_url = input('Enter the url of the product: ')
     read_price(web_url)
