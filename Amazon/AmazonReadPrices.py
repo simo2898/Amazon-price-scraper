@@ -1,9 +1,12 @@
+import re
 import requests
+import re
 from bs4 import BeautifulSoup
 
 
 def read_price(site_url):
     try:
+        i = 0
         headers = { 'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.90 Safari/537.36' }
         page = requests.get(site_url,headers=headers)
         soup = BeautifulSoup(page.content, features="lxml")
@@ -14,15 +17,18 @@ def read_price(site_url):
         else:
             print('Title Not Found')
 
-        for t in soup.select('[class="a-price"]'):
-            print(t)
-            print('-' * 80)
-
+        for tag in soup.select('[class="a-price"]'):
+            if i == 0 :
+                tag_string = str(tag)
+                tag_float = re.findall(r"[-+]?(?:\d*\,\d+|\d+)",tag_string)
+                print('-' * 20)
+                print(tag_float[0] + '€')
+                print('-' * 20)
+                i = i + 1
+            
 
     except AttributeError:
         print("NoneType")
-
-#implemented algo
 
 def main():
     web_url = input('Enter the url of the product: ')
