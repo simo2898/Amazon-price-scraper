@@ -18,12 +18,13 @@ def read_price(site_url):
 
         for tag in soup.select('[class="a-price"]'):
             if i == 0 :
+                i = i + 1
                 tag_string = str(tag)
                 tag_float = re.findall(r"[-+]?(?:\d*\,\d+|\d+)",tag_string)
                 print('-' * 20)
                 print(tag_float[0] + '€')
                 print('-' * 20)
-                i = i + 1
+                
             
 
     except AttributeError:
