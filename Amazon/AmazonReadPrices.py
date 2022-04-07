@@ -30,9 +30,11 @@ def read_price(site_url):
     except AttributeError:
         print("NoneType")
 
+def read_lib():
+    print('i have read a library')
+
 def main():
-    web_url = input('Enter the url of the product: ')
-    read_price(web_url)
+    read_lib()
 
 if __name__ == "__main__":
     main()
